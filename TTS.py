@@ -13,6 +13,8 @@ engine = pyttsx3.init()
 # Choose the voice based on user input(ChatGPT assisted)
 gender_input = input("Enter 'male' or 'female' to pick a voice: ").lower()
 
+voices = engine.getProperty('voices')
+
 if gender_input == 'male':
     engine.setProperty('voice', voices[0].id)
 elif gender_input == 'female':
