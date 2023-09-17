@@ -4,14 +4,14 @@ Below is kind of a long story, so skip it if you feel like it
 With help from ChatGPT to do the if/elif/else statements
 This made it so that inputs were male/female rather than voices[0].id/voices[1].id
 ChatGPT did not contribute any important parts of the code, it simply increased user friendliness
-Because of this, I went out to learn if/elif/else ststements, and now i can do things like this myself
+Because of this, I went out to learn if/elif/else ststements and .lower(), and now i can do things like this myself
 """
 # Set up the library
 import pyttsx3
 engine = pyttsx3.init()
 
 # Choose the voice based on user input(ChatGPT assisted)
-gender_input = input("Enter 'male' or 'female' to pick a voice: ")
+gender_input = input("Enter 'male' or 'female' to pick a voice: ").lower()
 
 if gender_input == 'male':
     engine.setProperty('voice', voices[0].id)
@@ -36,7 +36,7 @@ engine.setProperty('rate', rate+int(word_rate))
  
 #Choose to save as mp3 or say as words 
 print("Save as mp3 or say immediately? ")
-output_type = input("mp3/say: ")
+output_type = input("mp3/say: ").lower()
 print()
 
 #Save/Say
