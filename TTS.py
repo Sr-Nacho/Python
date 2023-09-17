@@ -18,7 +18,7 @@ if gender_input == 'male':
 elif gender_input == 'female':
     engine.setProperty('voice', voices[1].id)
 else:
-    print("Voice not found for the specified gender.")
+    print("Voice not found for the specified gender. Please restart the program and try again")
 
 print()
 
@@ -54,11 +54,16 @@ elif output_type == "mp3":
     words = input("What should I save? ")
     file_name = input("What should it be called? ")
     
-    engine.save_to_file(words, file_name)
-    engine.runAndWait()
-    
+    save_status = input(f"I will save the following: '{words}' as '{file_name}.mp3'. is this correct? yes/no ")
+    if save_status == "yes":
+        engine.save_to_file(words, file_name)
+        engine.runAndWait()
+        
+        print("Save complete")
+    else:
+        print("Restart program and try again")
 else:
     
     print("That is not a valid response.")
-    engine.say("That is not a valid response")
+    engine.say("That is not a valid response. Restart the program and try again.")
     engine.runAndWait()
