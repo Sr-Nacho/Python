@@ -57,13 +57,19 @@ elif output_type == 'mp3':
     file_name = input('What should it be called? ')
     
     save_status = input(f'I will save the following: "{words}" as "{file_name}.mp3". is this correct? yes/no ')
-    if save_status == 'yes':
+    
+    while(save_status == 'no'):
+        words = input('What should I save? ')
+        file_name = input('What should it be called? ')
+        
+        save_status = input(f'I will save the following: "{words}" as "{file_name}.mp3". is this correct? yes/no ')
+        
+    else:
         engine.save_to_file(words, file_name)
         engine.runAndWait()
         
         print('Save complete')
-    else:
-        print('Restart program and try again')
+        
 else:
     
     print('That is not a valid response.')
