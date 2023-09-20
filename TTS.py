@@ -41,7 +41,7 @@ print('Save as mp3 or say immediately? ')
 output_type = input('mp3/say: ').lower()
 print()
 
-#Save/Say
+#Save/Say(The important part)
 if output_type == 'say':
     
     #Say the words
@@ -56,14 +56,16 @@ elif output_type == 'mp3':
     words = input('What should I save? ')
     file_name = input('What should it be called? ')
     
-    save_status = input(f'I will save the following: "{words}" as "{file_name}.mp3". is this correct? yes/no ')
+    save_status = input(f'I will save the following: "{words}" as "{file_name}.mp3". is this correct? yes/no ').lower()
+    print()
     
+    #Make sure user can get it right before it saves
     while(save_status == 'no'):
         words = input('What should I save? ')
         file_name = input('What should it be called? ')
         
-        save_status = input(f'I will save the following: "{words}" as "{file_name}.mp3". is this correct? yes/no ')
-        
+        save_status = input(f'I will save the following: "{words}" as "{file_name}.mp3". is this correct? yes/no ').lower()
+        print()
     else:
         engine.save_to_file(words, file_name)
         engine.runAndWait()
