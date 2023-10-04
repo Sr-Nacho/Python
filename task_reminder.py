@@ -47,12 +47,15 @@ else:
     print('')
     
 ## Print tasks + get task number input ##
+x1 = 0
+while x1 == 0:
+
     if tasks == 1:
-        
         task1_num = int(input('How many times have you completed the task? '))
         remaining1 = goal1 - task1_num
         if remaining1 < 0:
             print('You went above and beyond, well done!')
+            
         else:
             print('You have done ' + task1 + ' ' + str(task1_num) + ' times')
             print('only ' + str(remaining1) + ' more times')
@@ -63,6 +66,7 @@ else:
         remaining1 = goal1 - task1_num
         if remaining1 < 0:
             print('You went above and beyond, well done!')
+            
         else:
             print('You have done ' + task1 + ' ' + str(task1_num) + ' times')
             print('only ' + str(remaining1) + ' more times')
@@ -71,6 +75,7 @@ else:
         remaining2 = goal2 - task2_num
         if remaining2 < 0:
             print('You went above and beyond, well done!')
+           
         else:
             print('You have done ' + task2 + ' ' + str(task2_num) + ' times')
             print('only ' + str(remaining1) + ' more times')
@@ -80,6 +85,7 @@ else:
         remaining1 = goal1 - task1_num
         if remaining1 < 0:
             print('You went above and beyond, well done!')
+            
         else:
             print('You have done ' + task1 + ' ' + str(task1_num) + ' times')
             print('only ' + str(remaining1) + ' more times')
@@ -88,6 +94,7 @@ else:
         remaining2 = goal2 - task2_num
         if remaining2 < 0:
             print('You went above and beyond, well done!')
+            
         else:
             print('You have done ' + task2 + ' ' + str(task2_num) + ' times')
             print('only ' + str(remaining1) + ' more times')
@@ -96,14 +103,17 @@ else:
         remaining3 = goal3 - task3_num
         if remaining3 < 0:
             print('You went above and beyond, well done!')
+            
         else:
             print('You have done ' + task3 + ' ' + str(task3_num) + ' times')
             print('only ' + str(remaining3) + ' more times')
-        
+    print()
+    end = input('Should i end the program here?(yes/no) ').lower()
+    if end == "yes":
+        x1 = 3
+    print()
 ## Check for errors, be sure the code ran sucessfully, and prevent infinite loops ##
-    else:
-        
-        print('There was an error on my part')
-    task_check = 'yes'
+
+task_check = 'yes'
 
 print('Code complete')
