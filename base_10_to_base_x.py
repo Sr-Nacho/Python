@@ -1,3 +1,7 @@
+"""
+This is basically copied completely from chatgpt for later use
+"""
+
 def decimal_to_base_n(number, base):
     if base < 2 or base > 36:
         return "Base out of range (2-36)"
