@@ -1,0 +1,82 @@
+
+Figure out how to make this thing a library on your own
+
+markdown
+Copy code
+# Base Converter Library Documentation
+
+## Introduction
+
+The `base_converter` library is a Python package that provides functions for converting numbers between different bases, including converting from base 10 to other bases and vice versa. This documentation will guide you through the functions available in this library and how to use them effectively.
+
+## Installation
+
+To use the `base_converter` library, you can install it using pip:
+
+pip install base_converter
+
+csharp
+Copy code
+
+## Functions
+
+### `decimal_to_base_n(number, base)`
+
+Converts a decimal number to the specified base.
+
+- **Parameters:**
+  - `number` (int): The decimal number to convert.
+  - `base` (int): The target base for conversion (2 to 36).
+
+- **Returns:**
+  - `str`: The converted number as a string in the specified base.
+
+- **Example:**
+
+  ```python
+  from base_converter import decimal_to_base_n
+
+  num = 42
+  base_2 = decimal_to_base_n(num, 2)
+  print(base_2)  # Output: '101010'
+base_n_to_decimal(number, base)
+Converts a number in the specified base to a decimal number.
+
+Parameters:
+
+number (str): The number to convert as a string.
+base (int): The base of the input number (2 to 36).
+Returns:
+
+int: The decimal equivalent of the input number.
+Example:
+
+from base_converter import base_n_to_decimal
+
+hex_num = '2A'
+decimal_value = base_n_to_decimal(hex_num, 16)
+print(decimal_value)  # Output: 42
+
+Usage
+Here's an example of how to use the base_converter library for base conversion:
+
+from base_converter import decimal_to_base_n, base_n_to_decimal
+
+# Convert decimal to binary
+num = 42
+binary_value = decimal_to_base_n(num, 2)
+print(binary_value)  # Output: '101010'
+
+# Convert binary to decimal
+binary_num = '101010'
+decimal_value = base_n_to_decimal(binary_num, 2)
+print(decimal_value)  # Output: 42
+
+Error Handling
+The library provides error handling for invalid base values (outside the range 2 to 36).
+If an invalid base is provided, the functions return an error message.
+Conclusion
+The base_converter library simplifies base conversion tasks in Python, offering functions to convert numbers between different bases. This functionality is valuable in various applications, such as encoding, decoding, and data representation.
+
+License
+This library is distributed under the MIT License.
