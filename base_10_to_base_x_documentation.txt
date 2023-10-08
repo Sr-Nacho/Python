@@ -1,8 +1,6 @@
 
 Figure out how to make this thing a library on your own
 
-markdown
-Copy code
 # Base Converter Library Documentation
 
 ## Introduction
