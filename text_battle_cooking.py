@@ -4,6 +4,7 @@ Instruction: Nested Conditionals
 Part 2: Cooking
 """
 import random
+import turtle
 act_num = 0
 # Ask the user if they like to cook
 cook = input("Do you like to cook? Enter y or n: ")
@@ -119,10 +120,7 @@ else:
                     elif act_num >= 10:
                         
                         print("Miles leaves, seeing no reason for further violence.")
-                        print("He is in the midst of his attack, but the battle is over")
-                        
-                        # Import turtle package 
-                        import turtle 
+                        print("He is in the midst of his attack, but the battle is over") 
   
                         # Creating a turtle object(pen) 
                         pen = turtle.Turtle() 
