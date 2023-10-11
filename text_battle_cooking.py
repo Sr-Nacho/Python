@@ -4,6 +4,7 @@ Instruction: Nested Conditionals
 Part 2: Cooking
 """
 import random
+act_num = 0
 # Ask the user if they like to cook
 cook = input("Do you like to cook? Enter y or n: ")
 
@@ -57,6 +58,7 @@ else:
                 print()
             action = input("act/fight/item ").lower()
             if action == "fight":
+                act_num -= act_num
                 attack = int(input("Pick a number between 1 and 10 "))
                 num = random.randint(1, 10)
                 if attack != num:
@@ -69,11 +71,25 @@ else:
                     print("Critical hit!")
                     print("Miles takes 10 damage.")
             elif action == "act":
-                print("Actions: Check health")
+                print("Actions: ")
+                print("Check health")
+                print("Spare")
+                print()
                 act = input("Type one of the above actions " ).lower()
-                print("You peer into the enemys soul, and with that you check his status")
-                print("Miles has no intention of sparing you")
-                print("Miles has " + str(enemy_health) + " health remaining")
+                if act == "check health":
+                    print("You peer into the enemys soul, and with that you check his status")
+                    print("Miles has " + str(enemy_health) + " health remaining")
+                elif act == "spare":
+                    if act_num <= 5:
+                        print("Miles does not see the need to run. He has no intention of sparing you.")
+                        act_num += 1
+                    elif act_num >= 10:
+                        print("Miles leaves, seeing no reason for further violence.")
+                        print("He is in the midst of his attack, but the battle is over")
+                        alive = "Barely"
+                    elif act_num > 5:
+                        print("Miles does not see the need to run. You see him considering your offer.")
+                        act_num += 1
             elif action == "item":
                 print("You reach into your pockets, but they are empty")
             print()
