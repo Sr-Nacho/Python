@@ -1,0 +1,26 @@
+inputs are in single quotes
+test data begin:
+"""
+Hi, welcome to the task manager
+How many tasks are you entering? '3'
+Enter task 1 here 'Walk the dog'
+Enter task 2 here 'Make dinner'
+Enter task 3 here 'Do homework'
+Would you like to see your tasks? y/n 'y'
+Task 1 Walk the dog
+Task 2 Make dinner
+Task 3 Do homework
+Going home...
+Are you entering or deleting tasks? enter/delete 'delete'
+How many tasks are you deleting? '2'
+Which task do you want to delete? Enter task number '1'
+New task list: 
+Task 1 Make dinner
+Task 2 Do homework
+Which task do you want to delete? Enter task number '2'
+New task list: 
+Task 1 Make dinner
+Would you like to see your tasks? y/n 'n'
+Going home...
+'Force quit; test was complete'
+"""
