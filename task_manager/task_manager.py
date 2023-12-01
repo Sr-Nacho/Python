@@ -5,6 +5,7 @@ import time
 active = True
 # Creates an empty list to store tasks in
 tasks = []
+complete_tasks = []
 
 # Welcome the user with a start message
 # The user should only see the start message once
@@ -19,24 +20,66 @@ while active:
     
     # Reseting options
     task_num = 0
+    done_num = 0
     delete_num = 0
     
     # Determine how long the following loop will loop
     # This is considered home for the code
     # There are no task on the first execution, so the code will only let you enter tasks
     if len(tasks) == 0:   
-        enter = True
+        enter_bool = True
+        done_bool = False
+        delete_bool = False
         
     # Specifing between entering and deleting tasks
     # Default is delete
     else:
-        enter = input("Are you entering or deleting tasks? enter/delete ").lower() == "enter"
         
-    if enter:
-        task_num = int(input("How many tasks are you entering? "))
-    else:
-        delete_num = int(input("How many tasks are you deleting? "))
+        enter_bool = input("Are you entering tasks? y/n ").lower() == "y"
+        done_bool = input("Are you done with tasks? y/n ").lower() == "y"
+        delete_bool = input("Are you deleting tasks? y/n ").lower() == "y"
+        
     
+    if enter_bool:
+        task_num = int(input("How many tasks are you entering? "))
+    if done_bool:
+        done_num = int(input("How many tasks are you done with? "))
+    if delete_bool:
+        delete_num = int(input("How many tasks are you deleting? "))
+    else:
+        print("None selected")
+    
+    # Input tasks
+    
+    for i in range(task_num):
+        
+        # Task input
+        tasks.insert(i, input("Enter task " + str(i + 1) + " here "))
+        
+    if (done_bool or delete_bool) and enter_bool:
+        print("New task list: ")
+        # Prevent confusion by showing the user the new task order
+        # Print tasks
+        for i in range(len(tasks)):
+            print("Task " + str(i + 1) + " " + tasks[i])
+            time.sleep(1)
+    
+    
+    # Finish tasks
+    for i in range(done_num):
+        done = int(input("Which task did you complete? Enter task number "))
+        done -= 1
+        complete_tasks.append(tasks[done])
+        del tasks[done]
+        
+    if delete_bool and done_bool:
+        print("New task list: ")
+        # Prevent confusion by showing the user the new task order
+        # Print tasks
+        for i in range(len(tasks)):
+            print("Task " + str(i + 1) + " " + tasks[i])
+            time.sleep(1)
+        
     # Delete tasks
     for i in range(delete_num):
         delete = int(input("Which task do you want to delete? Enter task number "))
@@ -51,12 +94,6 @@ while active:
             for i in range(len(tasks)):
                 print("Task " + str(i + 1) + " " + tasks[i])
                 time.sleep(1)
-    
-    # Input tasks
-    for i in range(task_num):
-        
-        # Task input
-        tasks.insert(i, input("Enter task " + str(i + 1) + " here "))
         
     # Optional task display
     see_tasks = input("Would you like to see your tasks? y/n ").lower() == "y"
@@ -66,6 +103,11 @@ while active:
         for i in range(len(tasks)):
             print("Task " + str(i + 1) + " " + tasks[i])
             time.sleep(1)
+        if len(complete_tasks) > 0:
+            print("Completed tasks: ")
+            for i in range len(complete_tasks):
+                print("Complete task " + str(i + 1) + " " + complete_tasks[i])
+            
     print("Going home...")
     
     # Pause before sending back to home screen
