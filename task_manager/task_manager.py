@@ -6,6 +6,9 @@ active = True
 # Creates an empty list to store tasks in
 tasks = []
 complete_tasks = []
+report = 0
+points = 0
+ranks = []
 
 # Welcome the user with a start message
 # The user should only see the start message once
@@ -46,7 +49,7 @@ while active:
         done_num = int(input("How many tasks are you done with? "))
     if delete_bool:
         delete_num = int(input("How many tasks are you deleting? "))
-    else:
+    if not enter_bool and not done_bool and not delete_bool:
         print("None selected")
     
     # Input tasks
@@ -71,6 +74,9 @@ while active:
         done -= 1
         complete_tasks.append(tasks[done])
         del tasks[done]
+        points += 100
+        print("Points = " + str(points))
+        
         
     if delete_bool and done_bool:
         print("New task list: ")
@@ -79,6 +85,8 @@ while active:
         for i in range(len(tasks)):
             print("Task " + str(i + 1) + " " + tasks[i])
             time.sleep(1)
+            points -= 25
+            print("Points = " + str(points))
         
     # Delete tasks
     for i in range(delete_num):
@@ -105,13 +113,17 @@ while active:
             time.sleep(1)
         if len(complete_tasks) > 0:
             print("Completed tasks: ")
-            for i in range len(complete_tasks):
+            time.sleep(1)
+            for i in range(len(complete_tasks)):
                 print("Complete task " + str(i + 1) + " " + complete_tasks[i])
+                time.sleep(1)
             
     print("Going home...")
     
     # Pause before sending back to home screen
     time.sleep(5)
+    
+    report += 1
     
 ## Used to identify errors
 else: print("Something broke")
