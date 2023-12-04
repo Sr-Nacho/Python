@@ -2,9 +2,8 @@
 ## Set up variables and library
 # Import libraries and set up variables
 import time
-# Used to keep the while loop with the task manager inside active forever
+# Creates all of the variables we will need
 active = True
-# Creates an empty list to store tasks in
 tasks = []
 complete_tasks = []
 report = 0
@@ -12,12 +11,28 @@ points = 0
 ranks = []
 achievement = []
 streak = 0
+rank = " "
+perm_rank_points = 0
+perm_rank = "None"
 
 # Welcome the user with a start message
 # The user should only see the start message once
-print("Hi, welcome to the task manager")
+print("""
+Hi, welcome to the task manager.
+Do tasks to get points. More points
+equals a higher rank. You have a rank
+given periodically, that is temporary.
+It represents your productivity in the
+moment. You have another rank that is 
+increased by consistently getting a good
+temporary rank. This rank is permanent,
+and shows your consistency over time.
+Achievements are one time goals that show
+your peak productivity and what you have done
+over time.
+""")
 # Use pauses to create a feeling simmilar to that of fake loading screens
-time.sleep(1)
+time.sleep(10)
 
 ## Main body of the code
 # This is the part of the code that is used the whole time
@@ -77,7 +92,7 @@ while active:
         done -= 1
         complete_tasks.append(tasks[done])
         del tasks[done]
-        points += 100
+        points += 150
         
     if delete_bool and done_bool:
         print("New task list: ")
@@ -92,7 +107,7 @@ while active:
         delete = int(input("Which task do you want to delete? Enter task number "))
         delete -= 1
         del tasks[delete]
-        points -= 25
+        points -= 50
         
         # Prevent confusion by showing the user the new task order
         if delete_num > 1:
@@ -123,6 +138,9 @@ while active:
     report += 1
     
     # Achievements
+    # These achievements are not meant to be easy
+    # You should not be getting an A rank often, making the achievement worth while
+    # This achievement should be impossible to get
     if "SSS+" in ranks and "Cheater" not in achievement:
         achievement.append("Cheater")
         print("""
@@ -133,6 +151,7 @@ while active:
                    Cheat
             
             """)
+    # This achievement marks great effort, and is a major step
     if "SSS" in ranks and "Max Power" not in achievement:
         achievement.append("Max power")
         print("""
@@ -143,6 +162,7 @@ while active:
                Reach SSS rank
         
         """)
+    # This is our version of a participation award
     if points < 0 and report == 5 and "Sub-Zero" not in achievement:
         achievement.append("Sub-Zero")
         print("""
@@ -155,18 +175,30 @@ while active:
                 but fair
                 
         """)
-    if "F" in ranks and "D" in ranks and "C" in ranks and "B" in ranks and "A" in ranks and "S" in ranks and "SS" in ranks and "SSS" in ranks and "I've seen it all" not in achievements:
-        achievement.append("I've seen it all")
-        print("""
-            Achievement unlocked:
-            
-           >--I've seen it all--<
-           
-               Get all of the
-               ranks
-               
-        """)
+    # The hardest possible achievement
+    # Uses nested if statements to keep the line short, since it was over the limit for PEP-8
+    if "F" in ranks:
+        if "D" in ranks:
+            if "C" in ranks:
+                if "B" in ranks:
+                    if "A" in ranks:
+                        if "S" in ranks:
+                            if "SS" in ranks:
+                                if "SSS" in ranks: 
+                                    if "I've seen it all" not in achievements:
+                                        achievement.append("I've seen it all")
+                                        print("""
+                                            Achievement unlocked:
+
+                                           >--I've seen it all--<
+
+                                               Get all of the
+                                               ranks
+
+                                        """)
+    # Meant to show consistency
     if streak == 5 and "Streak" not in achievements:
+        achievement.append("Streak")
         print("""
             Achievement unlocked:
                 
@@ -177,7 +209,20 @@ while active:
                 in a row
                 
         """)
+    # Get an achievement every time you hit a new rank
+    if (rank == "S" or rank == "SS" or rank == "SSS") and "Super" not in achievements:
+        achievement.append("Super")
+        print("""
+            Achievement unlocked:
+            
+                >--Super--<
+                
+                Get S rank 
+                or higher
+                
+        """)
     if rank == "A" and "Ace" not in achievements:
+        achievement.append("Ace")
         print("""
             Achievement unlocked:
             
@@ -185,6 +230,51 @@ while active:
                 
                 Get an A
                 rank
+                
+        """)
+    if rank == "B" and "Ballin'" not in achievements:
+        achievement.append("Ballin'")
+        print("""
+            Achievement unlocked:
+            
+               >--Ballin'--<
+                
+                Get a B
+                rank
+                
+        """)
+    if rank == "C" and "C-uperior" not in achievements:
+        achievement.append("C-uperior")
+        print("""
+            Achievement unlocked:
+            
+               >--C-uperior--<
+                
+                Get a C
+                rank
+                
+        """)
+    if rank == "D" and "Doing something" not in achievements:
+        achievement.append("Doing something")
+        print("""
+            Achievement unlocked:
+            
+            >--Doing something--<
+                
+                Get a D
+                rank
+                
+        """)
+    if rank == "F" and "We all start somewhere" not in achievements:
+        achievement.append("We all start somewhere")
+        print("""
+            Achievement unlocked:
+            
+         >--We all start somewhere--<
+                
+                Get a F
+                rank
+                
         """)
                 
     # Progress reports
@@ -226,6 +316,182 @@ while active:
             # You have to cheat to get this
             rank = "SSS+"
             
+        # Permanent ranks
+        # Progression is meant to slow to a crawl the higher you get
+        # Elite might take lots of time to become champion with SSS, so it shows consistency
+        # This part adds/subtracts points
+        # It also runs only when the temporary ranks are evaluated
+
+        if perm_rank == "None":
+            if rank == "F":
+                perm_rank_points += 0
+            elif rank == "D":
+                perm_rank_points += 10
+            elif rank == "C":
+                perm_rank_points += 25
+            elif rank == "B":
+                perm_rank_points += 50
+            elif rank == "A":
+                perm_rank_points += 100
+            elif rank == "S":
+                perm_rank_points += 250
+            elif rank == "SS":
+                perm_rank_points += 500
+            elif rank == "SSS":
+                perm_rank_points += 1000
+        if perm_rank == "Stone":
+            if rank == "F":
+                perm_rank_points -= 10
+            elif rank == "D":
+                perm_rank_points += 0
+            elif rank == "C":
+                perm_rank_points += 10
+            elif rank == "B":
+                perm_rank_points += 25
+            elif rank == "A":
+                perm_rank_points += 50
+            elif rank == "S":
+                perm_rank_points += 100
+            elif rank == "SS":
+                perm_rank_points += 250
+            elif rank == "SSS":
+                perm_rank_points += 500
+        if perm_rank == "Bronze":
+            if rank == "F":
+                perm_rank_points -= 25
+            elif rank == "D":
+                perm_rank_points -= 10
+            elif rank == "C":
+                perm_rank_points += 0
+            elif rank == "B":
+                perm_rank_points += 10
+            elif rank == "A":
+                perm_rank_points += 25
+            elif rank == "S":
+                perm_rank_points += 50
+            elif rank == "SS":
+                perm_rank_points += 100
+            elif rank == "SSS":
+                perm_rank_points += 250
+        if perm_rank == "Silver":
+            if rank == "F":
+                perm_rank_points -= 50
+            elif rank == "D":
+                perm_rank_points -= 25
+            elif rank == "C":
+                perm_rank_points -= 10
+            elif rank == "B":
+                perm_rank_points += 0
+            elif rank == "A":
+                perm_rank_points += 10
+            elif rank == "S":
+                perm_rank_points += 25
+            elif rank == "SS":
+                perm_rank_points += 50
+            elif rank == "SSS":
+                perm_rank_points += 100
+        if perm_rank == "Gold":
+            if rank == "F":
+                perm_rank_points -= 100
+            elif rank == "D":
+                perm_rank_points -= 50
+            elif rank == "C":
+                perm_rank_points -= 25
+            elif rank == "B":
+                perm_rank_points -= 10
+            elif rank == "A":
+                perm_rank_points += 0
+            elif rank == "S":
+                perm_rank_points += 10
+            elif rank == "SS":
+                perm_rank_points += 25
+            elif rank == "SSS":
+                perm_rank_points += 50
+        if perm_rank == "Diamond":
+            if rank == "F":
+                perm_rank_points -= 250
+            elif rank == "D":
+                perm_rank_points -= 100
+            elif rank == "C":
+                perm_rank_points -= 50
+            elif rank == "B":
+                perm_rank_points -= 25
+            elif rank == "A":
+                perm_rank_points -= 10
+            elif rank == "S":
+                perm_rank_points += 0
+            elif rank == "SS":
+                perm_rank_points += 10
+            elif rank == "SSS":
+                perm_rank_points += 25
+        if perm_rank == "Elite":
+            if rank == "F":
+                perm_rank_points -= 500
+            elif rank == "D":
+                perm_rank_points -= 250
+            elif rank == "C":
+                perm_rank_points -= 100
+            elif rank == "B":
+                perm_rank_points -= 50
+            elif rank == "A":
+                perm_rank_points -= 25
+            elif rank == "S":
+                perm_rank_points -= 10
+            elif rank == "SS":
+                perm_rank_points += 0
+            elif rank == "SSS":
+                perm_rank_points += 10
+        if perm_rank == "Champion":
+            if rank == "F":
+                perm_rank_points -= 1000
+            elif rank == "D":
+                perm_rank_points -= 500
+            elif rank == "C":
+                perm_rank_points -= 250
+            elif rank == "B":
+                perm_rank_points -= 100
+            elif rank == "A":
+                perm_rank_points -= 50
+            elif rank == "S":
+                perm_rank_points -= 25
+            elif rank == "SS":
+                perm_rank_points -= 10
+            elif rank == "SSS":
+                perm_rank_points += 0
+        
+        # Decide/display permanent rank
+        # Points required decreases as rank increases
+        if perm_rank_points < 0:
+            perm_rank_points = 0
+        if perm_rank_points > 0:
+            perm_rank = "Stone"
+            print("Stone rank")
+            print(str(perm_rank_points) + " points")
+        if perm_rank_points <= 200:
+            perm_rank = "Bronze"
+            print("Bronze rank")
+            print(str(perm_rank_points) + " points")
+        if perm_rank_points <= 600:
+            perm_rank = "Silver"
+            print("Silver rank")
+            print(str(perm_rank_points) + " points")
+        if perm_rank_points <= 900:
+            perm_rank = "Gold"
+            print("Gold rank")
+            print(str(perm_rank_points) + " points")
+        if perm_rank_points <= 1100:
+            perm_rank = "Diamond"
+            print("Diamond rank")
+            print(str(perm_rank_points) + " points")
+        if perm_rank_points <= 1300:
+            perm_rank = "Elite"
+            print("Elite rank")
+            print(str(perm_rank_points) + " points")
+        if perm_rank_points <= 1500:
+            perm_rank = "Champion"
+            print("Champion rank")
+            print(str(perm_rank_points) + " points")
+
         ranks.append(rank)
         points = 0
     
@@ -234,6 +500,5 @@ while active:
     # Pause before sending back to home screen
     time.sleep(5)
     
-# Used to identify errors
-# Since the while loop never ends, the else will never run
+## Used to identify errors
 else: print("Something broke")
